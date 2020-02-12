@@ -1,11 +1,4 @@
-const express = require('express')
+const customExpress = require('./config/customExpress')
+const app = customExpress()
 
-const app = express()
-
-app.listen(3000, () => {
-    console.log('my app')
-})
-
-app.get('/atendimento', (request, response) => {
-    response.send('meu atendimento')
-})
+app.listen(3000, () => { console.log('Listen 3000.')})
