@@ -9,4 +9,17 @@ module.exports = app => {
         const atendimento = request.body
         Atendimento.adiciona(atendimento, response)
     })
+
+    app.patch('/atendimento/:id', (request, response) => {
+        const id = parseInt(request.params.id)
+        const valores = request.body
+        Atendimento.alterar(id, valores, response)
+    })
+    
+    app.delete('/atendimento/:id', (request, response) => {
+        const id = parseInt(request.params.id)
+        Atendimento.delete(id, response)
+    })
+
+
 }

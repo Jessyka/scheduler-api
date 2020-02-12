@@ -32,6 +32,34 @@ class Atendimento {
             }
         })
     }
+
+    alterar(id, valores, response) {
+        const sql = 'UPDATE Atendimentos SET ? WHERE id = ?'
+    
+        if(!isValidRequest({id, ...valores})) {
+            response.status(400).json({ errorMessage: 'Dados invalidos'})
+        }
+
+        conexao.query(sql, [id, valores], (erro, resultados) => {
+            if(erro) {
+                response.status(400).json(erro)
+            } else {
+                response.status(200).json(resultados)
+            }
+        })
+    }
+
+    deleta(id, response){
+        const sql = 'DELETE FROM Atendimentos WHERE id = ?'
+
+        conexao.query(sql, id, (erro, resultados) => {
+            if(erro) {
+                response.status(400).json(erro)
+            } else {
+                response.status(200).json(resultados)
+            }
+        })
+    }
 }
 
 const isValidRequest = ({nome, dataCriacao, dataAgendamento}) => {
