@@ -2,13 +2,11 @@ const Atendimento = require('../models/atendimentos')
 
 module.exports = app => {
     app.get('/atendimento', (request, response) => {
-        response.send('meu atendimento method get')
+        Atendimento.listarTudo(response)
     })
 
     app.post('/atendimento', (request, response) => {
-        const atendimento = req.body
-
-        Atendimento.adiciona(atendimento)
-        res.send('Post atendimento')
+        const atendimento = request.body
+        Atendimento.adiciona(atendimento, response)
     })
 }
